@@ -320,7 +320,7 @@ module S3Sync
         raise WrongUsage.new(nil, "You need to inform a file") if not file
 
         name = S3Sync.safe_join [key, File.basename(file)]
-        s3.buckets[bucket].objects[name].write Pathname.new(file)
+        s3.buckets[bucket].objects[name].write Pathname.new(file), acl: :public_read
       end
     end
 
