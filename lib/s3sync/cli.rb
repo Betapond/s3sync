@@ -27,7 +27,7 @@ require 's3sync/exceptions'
 require 's3sync/sync'
 require 'aws/s3'
 require 'cmdparse'
-
+require 'mime-types'
 
 module S3Sync
   module CLI
@@ -320,7 +320,8 @@ module S3Sync
         raise WrongUsage.new(nil, "You need to inform a file") if not file
 
         name = S3Sync.safe_join [key, File.basename(file)]
-        s3.buckets[bucket].objects[name].write Pathname.new(file), acl: :public_read
+        mime_type = MIME::Types.type_for(File.basename(file)).first.content_type
+        s3.buckets[bucket].objects[name].write Pathname.new(file), acl: :public_read, content_type: mime_type
       end
     end
 
