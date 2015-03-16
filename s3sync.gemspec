@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
 
   # Library requirements
   spec.add_dependency "aws-sdk", "~> 1.57"
-  spec.add_dependency "cmdparse"
-  spec.add_dependency "mime-types"
+  spec.add_dependency "cmdparse", "~> 2.0"
+  spec.add_dependency "mime-types", "~> 1.25"
 
   # Development requirements
   spec.add_development_dependency "simplecov"
